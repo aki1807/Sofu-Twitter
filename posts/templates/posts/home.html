@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SofuTwitter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .post {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timestamp {
+            color: gray;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>SofuTwitter</h1>
+
+    {% for post in posts %}
+        <div class="post">
+            <p>{{ post.content }}</p>
+            <p class="timestamp">{{ post.created_at }}</p>
+        </div>
+    {% empty %}
+        <p>まだ投稿がありません。</p>
+    {% endfor %}
+</body>
+</html>
