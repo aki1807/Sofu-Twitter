@@ -5,3 +5,6 @@ from .models import Post
 def home(request):
     posts = Post.objects.all().order_by('-created_at')  # 新しい順に並べる
     return render(request, "posts/home.html",{'posts': posts})
+
+def create(request):
+    return render(request, "posts/create.html")
