@@ -7,4 +7,4 @@ def home(request):
     return render(request, "posts/home.html",{'posts': posts})
 
 def create(request):
-    return render(request, "posts/home.html")
+    return render(request, "posts/create.html")
