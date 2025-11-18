@@ -34,5 +34,13 @@
     {% empty %}
         <p>まだ投稿がありません。</p>
     {% endfor %}
+    {% if user.is_authenticated  %}
+        <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post"> 
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link">ログアウト</button>
+            </form>
+        </li>
+    {% endif %}
 </body>
 </html>
