@@ -18,6 +18,14 @@
 {% empty %}
     <p>まだ投稿がありません。</p>
 {% endfor %}
-<a href= "http://127.0.0.1:8000/create/" target="_blank" >新規投稿する</a>
+<a href="{% url 'create' %}" target="_blank">新規投稿する</a>
+    {% if user.is_authenticated  %}
+        <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post"> 
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link">ログアウト</button>
+            </form>
+        </li>
+    {% endif %}
 </body>
 </html>
