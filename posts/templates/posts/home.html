@@ -1,38 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>SofuTwitter</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f5f8fa;
-            margin: 0;
-            padding: 20px;
-        }
-        .post {
-            background-color: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .timestamp {
-            color: gray;
-            font-size: 0.9em;
-        }
-    </style>
+    <title>ホーム</title>
 </head>
 <body>
-    <h1>SofuTwitter</h1>
 
-    {% for post in posts %}
-        <div class="post">
-            <p>{{ post.content }}</p>
-            <p class="timestamp">{{ post.created_at }}</p>
-        </div>
-    {% empty %}
-        <p>まだ投稿がありません。</p>
-    {% endfor %}
+<h1>投稿一覧</h1>
+
+{% for post in posts %}
+    <div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.memo }}</p>
+        <small>{{ post.created_at }}</small>
+    </div>
+    <hr>
+{% empty %}
+    <p>まだ投稿がありません。</p>
+{% endfor %}
+<a href= "http://127.0.0.1:8000/create/" target="_blank" >新規投稿する</a>
 </body>
 </html>

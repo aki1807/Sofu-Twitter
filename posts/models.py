@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
+    title = models.CharField(max_length=100)
+    memo = models.TextField()
     content = models.CharField(max_length=280)  # 投稿内容（ツイート本文）
     created_at = models.DateTimeField(default=timezone.now)  # 投稿日時
 
