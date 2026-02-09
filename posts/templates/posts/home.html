@@ -1,30 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>SofuTwitter</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f5f8fa;
-            margin: 0;
-            padding: 20px;
-        }
-        .post {
-            background-color: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .timestamp {
-            color: gray;
-            font-size: 0.9em;
-        }
-    </style>
-</head>
-<body>
-    <h1>SofuTwitter</h1>
+{% extends './base.html' %}
+
+{% block content %}
+    <a href="{% url 'create' %}" style="display:inline-block; margin-bottom:20px; padding:10px 20px; background:#1da1f2; color:white; text-decoration:none; border-radius:20px;">
+    ＋ 新しい投稿を作成
+    </a>
 
     {% for post in posts %}
         <div class="post">
@@ -34,5 +13,4 @@
     {% empty %}
         <p>まだ投稿がありません。</p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
