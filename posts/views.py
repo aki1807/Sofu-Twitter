@@ -1,22 +1,27 @@
 from django.shortcuts import render, redirect
 from .models import Post
-from django.contrib.auth.decorators import login_required
+from .ai_check import check_politeness
 
-# Create your views here.
-@login_required
 def home(request):
-    posts = Post.objects.all().order_by('-created_at')  # 新しい順に並べる
-    return render(request, "posts/home.html",{'posts': posts})
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, "posts/home.html", {'posts': posts})
 
-@login_required
+# 投稿画面
 def create(request):
-     if request.method == "POST":
-        title = request.POST.get("title")
-        memo = request.POST.get("memo")
-        
-        # DBに保存
-        Post.objects.create(title=title, memo=memo)
+    error_message = None
 
-        return redirect("home")
-     
-     return render(request, "posts/create.html")
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            # AI判定を実行
+            is_polite, reason = check_politeness(content)
+
+            if is_polite:
+                # 保存してホーム
+                Post.objects.create(content=content)
+                return redirect('home')
+            else:
+                #エラーメッセージを出して、そのまま投稿画面に留まる
+                error_message = reason
+
+    return render(request, "posts/create.html", {'error_message': error_message})
