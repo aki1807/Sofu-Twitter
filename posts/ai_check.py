@@ -20,7 +20,7 @@ def check_politeness(text):
     """
     
     # 無料枠で使える軽量モデルを指定
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.0-flash')
     
     prompt = f"""
     あなたは掲示板の管理人AIです。
@@ -42,7 +42,7 @@ def check_politeness(text):
     try:
         # AIに問い合わせ
         response = model.generate_content(prompt)
-        
+        print("はい")
         # 結果のテキストを取得
         result_text = response.text
         

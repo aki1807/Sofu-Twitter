@@ -1,0 +1,21 @@
+{% extends "../layout.html" %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+       <div class="card shadow p-4 rounded" style="width: 100%; max-width: 400px;">
+            <h2 class="text-center mb-4 fw-bold">ログイン</h2>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">ログイン</button>
+                </div>
+            </form>
+       </div>
+    </div>
+{% endblock %}
