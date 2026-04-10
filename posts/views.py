@@ -18,7 +18,7 @@ def create(request):
 
             if is_polite:
                 # 保存してホーム
-                Post.objects.create(content=content)
+                Post.objects.create(content=content, memo = reason)
                 return redirect('home')
             else:
                 #エラーメッセージを出して、そのまま投稿画面に留まる

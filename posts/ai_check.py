@@ -20,7 +20,7 @@ def check_politeness(text):
     """
     
     # 無料枠で使える軽量モデルを指定
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
     
     prompt = f"""
     あなたは掲示板の管理人AIです。
@@ -56,6 +56,8 @@ def check_politeness(text):
 
     except Exception as e:
         print(f"AI判定エラー: {e}")
+        print("===エラー内容===")
+        print(e)
         # エラー時は安全のためFalse（NG）扱いにするか、True（スルー）にするか選べます
         return False, "AIの判定に失敗しました。もう一度試してください。"
 
