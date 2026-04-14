@@ -22,12 +22,13 @@ def check_politeness(text):
     # 無料枠で使える軽量モデルを指定
     model = genai.GenerativeModel('gemini-2.5-flash')
     
+    # プロンプトの作成
     prompt = f"""
     あなたは掲示板の管理人AIです。
-    以下の投稿テキストが「丁寧語（です・ます調）」として適切か判定してください。
+    以下の投稿テキストが「敬語」として適切か判定してください。
 
     # 判定ルール
-    1. 文末が「です」「ます」などで終わる丁寧な表現なら true
+    1. ぶんがしっかりと敬語で表現されているなら true
     2. タメ口、乱暴な言葉、煽り、攻撃的な内容なら false
     3. 出力は必ず以下のJSON形式のみで行ってください。余計な文章は不要です。
     {{
@@ -46,10 +47,9 @@ def check_politeness(text):
         # 結果のテキストを取得
         result_text = response.text
         
-        # ググれ
+        # 
         result_text = result_text.replace("```json", "").replace("```", "").strip()
         
-        # ググれ
         data = json.loads(result_text)
         
         return data["isPolite"], data["reason"]
