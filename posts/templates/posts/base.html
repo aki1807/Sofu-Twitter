@@ -12,7 +12,8 @@
 
             <ul class="navbar-nav flex-row gap-3">
                 <li class="nav-item"><a class="nav-link" href="#">新規登録</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">ログイン</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">ログイン</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">ログアウト</a></li>
             </ul>
         </div>
     </nav>
